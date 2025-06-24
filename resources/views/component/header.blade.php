@@ -34,7 +34,7 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu"
-            class="hidden fixed inset-0 z-50 bg-black lg:mx-80 max-w-full mx-8  md:max-w-3xl  lg:my-44 my-28 px-2 flex items-center justify-center transition-all duration-300 rounded-3xl opacity-0 overflow-y-auto"
+            class="hidden fixed inset-0 z-50 bg-black lg:mx-80 max-w-full mx-8  md:max-w-3xl  lg:my-40 my-28 px-2 flex items-center justify-center transition-all duration-300 rounded-3xl opacity-0 overflow-y-auto"
             aria-modal="true" role="dialog" aria-labelledby="mobileMenuLabel">
             <div class="relative w-full max-w-2xl mx-auto">
                 <!-- Services Grid -->
