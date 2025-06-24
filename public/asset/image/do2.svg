@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 124.32 96.6">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #181818;
+        stroke-miterlimit: 10;
+        stroke-width: 1.53px;
+      }
+
+      .cls-2 {
+        fill: #fcf951;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #181818;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <rect class="cls-1" x="20.65" y="-19.12" width="83.02" height="122.79" rx="7.2" ry="7.2" transform="translate(104.43 -19.88) rotate(90)"/>
+        <path class="cls-2" d="M7.96.76h108.39c3.97,0,7.2,3.23,7.2,7.2v4.96H.76v-4.96C.76,3.99,3.99.76,7.96.76Z"/>
+        <circle class="cls-4" cx="8.68" cy="6.84" r="1.97"/>
+        <circle class="cls-4" cx="14.99" cy="6.84" r="1.97"/>
+        <circle class="cls-4" cx="21.3" cy="6.84" r="1.97"/>
+        <rect class="cls-4" x="42.93" y="4.87" width="38.46" height="3.94" rx=".89" ry=".89"/>
+      </g>
+      <g>
+        <g>
+          <path class="cls-1" d="M100.5,63.35c0-21.22-17.21-38.43-38.43-38.43S23.65,42.13,23.65,63.35"/>
+          <rect class="cls-4" x="59.21" y="22.06" width="5.72" height="5.72"/>
+          <rect class="cls-4" x="20.95" y="60.72" width="5.72" height="5.72"/>
+          <rect class="cls-4" x="97.64" y="60.72" width="5.72" height="5.72"/>
+          <rect class="cls-4" x="20.95" y="22.23" width="5.39" height="5.39" rx="2.36" ry="2.36"/>
+          <rect class="cls-4" x="97.81" y="22.23" width="5.39" height="5.39" rx="2.36" ry="2.36"/>
+          <line class="cls-1" x1="23.65" y1="24.92" x2="100.5" y2="24.92"/>
+        </g>
+        <g>
+          <rect class="cls-3" x="44.75" y="77.9" width="34.81" height="17.93" rx="1.86" ry="1.86"/>
+          <path class="cls-2" d="M77.82,64.58l-14.95-30.83c-.29-.59-1.13-.59-1.42,0l-14.95,30.83c-.18.38-.03.83.34,1.03,4.1,2.27,6.94,6.53,7.2,11.47.02.42.36.76.78.76h14.66c.42,0,.76-.34.78-.76.27-4.95,3.11-9.2,7.2-11.47.37-.21.53-.65.34-1.03Z"/>
+          <line class="cls-1" x1="62.16" y1="54.34" x2="62.16" y2="33.75"/>
+          <circle class="cls-1" cx="62.16" cy="55.58" r="4.07"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
