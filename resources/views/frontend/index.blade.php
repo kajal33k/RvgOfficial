@@ -310,7 +310,7 @@
         <!-- Call to Action -->
         <div class="mt-4 flex justify-center" data-aos="fade-up" data-aos-delay="500">
             <a href="#portfolio"
-                class="inline-block px-8 py-3 bg-white  text-black hover:bg-red-600 text-lg font-semibold rounded-full shadow-lg hover:bg-gray-900 hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
+                class="inline-block px-8 py-3 bg-white  text-black hover:bg-red-600 text-lg font-semibold rounded-full shadow-lg  hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black">
                 Request a Quote
             </a>
         </div>
@@ -1185,7 +1185,7 @@
                 <!-- Submit Button -->
                 <div class="mt-8 max-w-[400px] mx-auto">
                     <button type="submit"
-                        class="w-full flex justify-center items-center flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+                        class="w-full items-center flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
                         Request Quote
                     </button>
                 </div>
