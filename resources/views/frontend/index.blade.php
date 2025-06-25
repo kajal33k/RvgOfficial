@@ -133,17 +133,17 @@
         </div>
     </section>
     <!-- OUR WORK SECTION -->
-    <section class="bg-black py-20 px-4 sm:px-6 lg:px-8">
+    <section class="bg-black lg:py-20 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto">
             <!-- Section Heading -->
             <h1 id="ourWorkTitle"
-                class="text-center py-12 text-white font-[Montserrat] font-extrabold text-6xl sm:text-7xl lg:text-8xl transition-all duration-7000 ease-in-out mb-16"
+                class="text-center py-8 lg:py-12 text-white font-[Montserrat] font-extrabold text-6xl sm:text-7xl lg:text-8xl transition-all duration-7000 ease-in-out lg:mb-16"
                 data-aos="zoom-out-up">
                 OUR WORK
             </h1>
 
             <!-- Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-4 md:px-8 lg:px-16 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 md:px-8 lg:px-16 lg:py-16">
 
                 <!-- Card 1 -->
                 <div class="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 transform hover:-translate-y-2"
