@@ -629,6 +629,95 @@
         </div>
     </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    // Get all progress bars and their percentage displays
+    const progressBars = [
+        { bar: document.getElementById('progress-bar-1'), percent: document.getElementById('progress-percent-1') },
+        { bar: document.getElementById('progress-bar-2'), percent: document.getElementById('progress-percent-2') },
+        { bar: document.getElementById('progress-bar-3'), percent: document.getElementById('progress-percent-3') },
+        { bar: document.getElementById('progress-bar-4'), percent: document.getElementById('progress-percent-4') }
+    ];
+
+    // Get all step sections
+    const steps = [
+        document.getElementById('step1'),
+        document.getElementById('step2'),
+        document.getElementById('step3'),
+        document.getElementById('step4')
+    ];
+
+    // Variables to track scroll position
+    let lastScrollTop = 0;
+    let isScrolling = false;
+
+    // Function to update progress bars
+    function updateProgress(stepIndex, progress) {
+        progressBars[stepIndex].bar.style.width = `${progress}%`;
+        progressBars[stepIndex].percent.textContent = `${Math.round(progress)}%`;
+    }
+
+    // Function to handle scroll events
+    function handleScroll() {
+        if (isScrolling) return;
+        
+        isScrolling = true;
+        
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDirection = st > lastScrollTop ? 'down' : 'up';
+        lastScrollTop = st <= 0 ? 0 : st;
+        
+        // Calculate visibility and progress for each step
+        steps.forEach((step, index) => {
+            const rect = step.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const stepTop = rect.top;
+            const stepHeight = rect.height;
+            
+            // Calculate visibility ratio (0 to 1)
+            let visibilityRatio = 0;
+            if (stepTop < windowHeight && stepTop + stepHeight > 0) {
+                // Step is in viewport
+                const visibleHeight = Math.min(windowHeight, stepTop + stepHeight) - Math.max(0, stepTop);
+                visibilityRatio = visibleHeight / stepHeight;
+            }
+            
+            // Get current progress
+            const currentWidth = parseFloat(progressBars[index].bar.style.width) || 0;
+            
+            // Calculate new progress based on scroll direction
+            let newProgress = currentWidth;
+            if (scrollDirection === 'down') {
+                // Increase progress when scrolling down
+                newProgress = Math.min(100, currentWidth + (visibilityRatio * 2));
+            } else {
+                // Decrease progress when scrolling up
+                newProgress = Math.max(0, currentWidth - (visibilityRatio * 2));
+            }
+            
+            // Update progress if changed
+            if (Math.abs(newProgress - currentWidth) > 1) {
+                updateProgress(index, newProgress);
+            }
+        });
+        
+        isScrolling = false;
+    }
+
+    // Throttle scroll events for better performance
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(handleScroll, 10);
+    });
+
+    // Initialize progress bars to 0
+    progressBars.forEach((pb, index) => {
+        updateProgress(index, 0);
+    });
+});
+</script>
+    
     {{-- FOR DESKTOP SCREEN ---- --}}
     <main class="relative  md:block hidden">
 
@@ -714,84 +803,7 @@
     </main>
 
     {{-- FOR MOBILE SCREEN  --}}
-    {{-- <main class="relative block md:hidden lg:hidden">
-    <!-- Section Title -->
-    <h1 class="text-center pt-12 px-4 font-extrabold text-3xl mb-8">
-        What our clients say
-    </h1>
-
-    <!-- Mobile Slider Container with reduced height -->
-    <div class="testimonial-container  overflow-y-auto ">
-        <!-- Testimonial Slides -->
-        <section class="testimonial-slide w-full flex items-center justify-center px-4 py-8">
-            <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md space-y-4">
-                <svg class="h-10 w-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <blockquote class="text-base font-medium leading-relaxed text-gray-700">
-                    "As our first experience with web development, branding, and UI/UX design, Lemontree made the
-                    process incredibly smooth..."
-                </blockquote>
-                <div>
-                    <div class="text-base font-semibold text-gray-900">Shadi & Jad, Munchiz</div>
-                    <div class="text-xs text-gray-500">Canada</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonial-slide w-full flex items-center justify-center px-4 py-8">
-            <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md space-y-4">
-                <svg class="h-10 w-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <blockquote class="text-base font-medium leading-relaxed text-gray-700">
-                    "Lemontree transformed our digital presence completely. Their attention to detail and creative
-                    approach..."
-                </blockquote>
-                <div>
-                    <div class="text-base font-semibold text-gray-900">Sarah Johnson, Bloom Cosmetics</div>
-                    <div class="text-xs text-gray-500">United States</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonial-slide w-full flex items-center justify-center px-4 py-8">
-            <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md space-y-4">
-                <svg class="h-10 w-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <blockquote class="text-base font-medium leading-relaxed text-gray-700">
-                    "Working with Lemontree was a game-changer. Their designs are not just beautiful but highly
-                    functional..."
-                </blockquote>
-                <div>
-                    <div class="text-base font-semibold text-gray-900">Michael Chen, TechNova</div>
-                    <div class="text-xs text-gray-500">Singapore</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="testimonial-slide w-full flex items-center justify-center px-4 py-8">
-            <div class="w-full max-w-md p-6 bg-white rounded-xl shadow-md space-y-4">
-                <svg class="h-10 w-10 text-red-500" fill="currentColor" viewBox="0 0 24 24">
-                    <path
-                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-                <blockquote class="text-base font-medium leading-relaxed text-gray-700">
-                    "Lemontree's rebranding strategy was exactly what our company needed. The result is an identity
-                    customers love."
-                </blockquote>
-                <div>
-                    <div class="text-base font-semibold text-gray-900">Emma Rodriguez, Verde Living</div>
-                    <div class="text-xs text-gray-500">Spain</div>
-                </div>
-            </div>
-        </section>
-    </div>
-</main> --}}
+  
 
  <main class="relative block md:hidden lg:hidden bg-gray-100">
   <!-- Section Title -->
@@ -1383,79 +1395,79 @@
         // ftgyhujk
 
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const steps = [{
-                    id: 'step1',
-                    bar: 'progress-bar-1',
-                    percent: 'progress-percent-1',
-                    target: 90
-                },
-                {
-                    id: 'step2',
-                    bar: 'progress-bar-2',
-                    percent: 'progress-percent-2',
-                    target: 75
-                },
-                {
-                    id: 'step3',
-                    bar: 'progress-bar-3',
-                    percent: 'progress-percent-3',
-                    target: 85
-                },
-                {
-                    id: 'step4',
-                    bar: 'progress-bar-4',
-                    percent: 'progress-percent-4',
-                    target: 95
-                }
-            ];
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const steps = [{
+        //             id: 'step1',
+        //             bar: 'progress-bar-1',
+        //             percent: 'progress-percent-1',
+        //             target: 90
+        //         },
+        //         {
+        //             id: 'step2',
+        //             bar: 'progress-bar-2',
+        //             percent: 'progress-percent-2',
+        //             target: 75
+        //         },
+        //         {
+        //             id: 'step3',
+        //             bar: 'progress-bar-3',
+        //             percent: 'progress-percent-3',
+        //             target: 85
+        //         },
+        //         {
+        //             id: 'step4',
+        //             bar: 'progress-bar-4',
+        //             percent: 'progress-percent-4',
+        //             target: 95
+        //         }
+        //     ];
 
-            // Store current progress for each step
-            const currentProgress = steps.map(() => 0);
+        //     // Store current progress for each step
+        //     const currentProgress = steps.map(() => 0);
 
-            function updateProgressBars() {
-                steps.forEach((step, index) => {
-                    const element = document.getElementById(step.id);
-                    if (!element) return;
+        //     function updateProgressBars() {
+        //         steps.forEach((step, index) => {
+        //             const element = document.getElementById(step.id);
+        //             if (!element) return;
 
-                    const rect = element.getBoundingClientRect();
-                    const windowHeight = window.innerHeight;
-                    const elementTop = rect.top;
-                    const elementHeight = rect.height;
+        //             const rect = element.getBoundingClientRect();
+        //             const windowHeight = window.innerHeight;
+        //             const elementTop = rect.top;
+        //             const elementHeight = rect.height;
 
-                    // Calculate visibility percentage (0 to 1)
-                    let visibleRatio = 0;
-                    if (elementTop < windowHeight && elementTop + elementHeight > 0) {
-                        const visibleHeight = Math.min(windowHeight, elementTop + elementHeight) - Math.max(
-                            0, elementTop);
-                        visibleRatio = visibleHeight / elementHeight;
-                    }
+        //             // Calculate visibility percentage (0 to 1)
+        //             let visibleRatio = 0;
+        //             if (elementTop < windowHeight && elementTop + elementHeight > 0) {
+        //                 const visibleHeight = Math.min(windowHeight, elementTop + elementHeight) - Math.max(
+        //                     0, elementTop);
+        //                 visibleRatio = visibleHeight / elementHeight;
+        //             }
 
-                    // Calculate target progress based on visibility
-                    const targetProgress = Math.min(step.target, Math.floor(visibleRatio * step.target));
+        //             // Calculate target progress based on visibility
+        //             const targetProgress = Math.min(step.target, Math.floor(visibleRatio * step.target));
 
-                    // Only update if progress changed
-                    if (targetProgress !== currentProgress[index]) {
-                        currentProgress[index] = targetProgress;
-                        document.getElementById(step.bar).style.width = targetProgress + '%';
-                        document.getElementById(step.percent).textContent = targetProgress + '%';
-                    }
-                });
-            }
+        //             // Only update if progress changed
+        //             if (targetProgress !== currentProgress[index]) {
+        //                 currentProgress[index] = targetProgress;
+        //                 document.getElementById(step.bar).style.width = targetProgress + '%';
+        //                 document.getElementById(step.percent).textContent = targetProgress + '%';
+        //             }
+        //         });
+        //     }
 
-            // Initial update
-            updateProgressBars();
+        //     // Initial update
+        //     updateProgressBars();
 
-            // Update on scroll
-            window.addEventListener('scroll', function() {
-                updateProgressBars();
-            });
+        //     // Update on scroll
+        //     window.addEventListener('scroll', function() {
+        //         updateProgressBars();
+        //     });
 
-            // Update on resize (in case window size changes)
-            window.addEventListener('resize', function() {
-                updateProgressBars();
-            });
-        });
+        //     // Update on resize (in case window size changes)
+        //     window.addEventListener('resize', function() {
+        //         updateProgressBars();
+        //     });
+        // });
 
 
 

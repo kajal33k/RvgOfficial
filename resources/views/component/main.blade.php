@@ -211,7 +211,7 @@
       </style>
 
 </head>
-<body class="overflow-x-hidden  font-sans antialiased">
+<body class=" font-sans antialiased">
 @include('component.header')
 
 <div class="min-h-screen  flex flex-col">
