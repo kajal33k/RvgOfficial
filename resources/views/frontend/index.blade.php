@@ -2,29 +2,6 @@
 @section('content')
     {{-- STYLE --}}
     <style>
-        .progress-animate {
-            transition: width 0.5s ease-out;
-        }
-
-        .step-card {
-            transition: all 0.3s ease;
-        }
-
-        .step-card:hover {
-            transform: translateY(-5px);
-        }
-
-
-
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-
-
-
-
         html {
             scroll-behavior: smooth;
         }
@@ -629,95 +606,107 @@
         </div>
     </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    // Get all progress bars and their percentage displays
-    const progressBars = [
-        { bar: document.getElementById('progress-bar-1'), percent: document.getElementById('progress-percent-1') },
-        { bar: document.getElementById('progress-bar-2'), percent: document.getElementById('progress-percent-2') },
-        { bar: document.getElementById('progress-bar-3'), percent: document.getElementById('progress-percent-3') },
-        { bar: document.getElementById('progress-bar-4'), percent: document.getElementById('progress-percent-4') }
-    ];
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all progress bars and their percentage displays
+            const progressBars = [{
+                    bar: document.getElementById('progress-bar-1'),
+                    percent: document.getElementById('progress-percent-1')
+                },
+                {
+                    bar: document.getElementById('progress-bar-2'),
+                    percent: document.getElementById('progress-percent-2')
+                },
+                {
+                    bar: document.getElementById('progress-bar-3'),
+                    percent: document.getElementById('progress-percent-3')
+                },
+                {
+                    bar: document.getElementById('progress-bar-4'),
+                    percent: document.getElementById('progress-percent-4')
+                }
+            ];
 
-    // Get all step sections
-    const steps = [
-        document.getElementById('step1'),
-        document.getElementById('step2'),
-        document.getElementById('step3'),
-        document.getElementById('step4')
-    ];
+            // Get all step sections
+            const steps = [
+                document.getElementById('step1'),
+                document.getElementById('step2'),
+                document.getElementById('step3'),
+                document.getElementById('step4')
+            ];
 
-    // Variables to track scroll position
-    let lastScrollTop = 0;
-    let isScrolling = false;
+            // Variables to track scroll position
+            let lastScrollTop = 0;
+            let isScrolling = false;
 
-    // Function to update progress bars
-    function updateProgress(stepIndex, progress) {
-        progressBars[stepIndex].bar.style.width = `${progress}%`;
-        progressBars[stepIndex].percent.textContent = `${Math.round(progress)}%`;
-    }
-
-    // Function to handle scroll events
-    function handleScroll() {
-        if (isScrolling) return;
-        
-        isScrolling = true;
-        
-        const st = window.pageYOffset || document.documentElement.scrollTop;
-        const scrollDirection = st > lastScrollTop ? 'down' : 'up';
-        lastScrollTop = st <= 0 ? 0 : st;
-        
-        // Calculate visibility and progress for each step
-        steps.forEach((step, index) => {
-            const rect = step.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const stepTop = rect.top;
-            const stepHeight = rect.height;
-            
-            // Calculate visibility ratio (0 to 1)
-            let visibilityRatio = 0;
-            if (stepTop < windowHeight && stepTop + stepHeight > 0) {
-                // Step is in viewport
-                const visibleHeight = Math.min(windowHeight, stepTop + stepHeight) - Math.max(0, stepTop);
-                visibilityRatio = visibleHeight / stepHeight;
+            // Function to update progress bars
+            function updateProgress(stepIndex, progress) {
+                progressBars[stepIndex].bar.style.width = `${progress}%`;
+                progressBars[stepIndex].percent.textContent = `${Math.round(progress)}%`;
             }
-            
-            // Get current progress
-            const currentWidth = parseFloat(progressBars[index].bar.style.width) || 0;
-            
-            // Calculate new progress based on scroll direction
-            let newProgress = currentWidth;
-            if (scrollDirection === 'down') {
-                // Increase progress when scrolling down
-                newProgress = Math.min(100, currentWidth + (visibilityRatio * 2));
-            } else {
-                // Decrease progress when scrolling up
-                newProgress = Math.max(0, currentWidth - (visibilityRatio * 2));
+
+            // Function to handle scroll events
+            function handleScroll() {
+                if (isScrolling) return;
+
+                isScrolling = true;
+
+                const st = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollDirection = st > lastScrollTop ? 'down' : 'up';
+                lastScrollTop = st <= 0 ? 0 : st;
+
+                // Calculate visibility and progress for each step
+                steps.forEach((step, index) => {
+                    const rect = step.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    const stepTop = rect.top;
+                    const stepHeight = rect.height;
+
+                    // Calculate visibility ratio (0 to 1)
+                    let visibilityRatio = 0;
+                    if (stepTop < windowHeight && stepTop + stepHeight > 0) {
+                        // Step is in viewport
+                        const visibleHeight = Math.min(windowHeight, stepTop + stepHeight) - Math.max(0,
+                            stepTop);
+                        visibilityRatio = visibleHeight / stepHeight;
+                    }
+
+                    // Get current progress
+                    const currentWidth = parseFloat(progressBars[index].bar.style.width) || 0;
+
+                    // Calculate new progress based on scroll direction
+                    let newProgress = currentWidth;
+                    if (scrollDirection === 'down') {
+                        // Increase progress when scrolling down
+                        newProgress = Math.min(100, currentWidth + (visibilityRatio * 2));
+                    } else {
+                        // Decrease progress when scrolling up
+                        newProgress = Math.max(0, currentWidth - (visibilityRatio * 2));
+                    }
+
+                    // Update progress if changed
+                    if (Math.abs(newProgress - currentWidth) > 1) {
+                        updateProgress(index, newProgress);
+                    }
+                });
+
+                isScrolling = false;
             }
-            
-            // Update progress if changed
-            if (Math.abs(newProgress - currentWidth) > 1) {
-                updateProgress(index, newProgress);
-            }
+
+            // Throttle scroll events for better performance
+            let scrollTimeout;
+            window.addEventListener('scroll', function() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(handleScroll, 10);
+            });
+
+            // Initialize progress bars to 0
+            progressBars.forEach((pb, index) => {
+                updateProgress(index, 0);
+            });
         });
-        
-        isScrolling = false;
-    }
+    </script>
 
-    // Throttle scroll events for better performance
-    let scrollTimeout;
-    window.addEventListener('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(handleScroll, 10);
-    });
-
-    // Initialize progress bars to 0
-    progressBars.forEach((pb, index) => {
-        updateProgress(index, 0);
-    });
-});
-</script>
-    
     {{-- FOR DESKTOP SCREEN ---- --}}
     <main class="relative  md:block hidden">
 
@@ -803,20 +792,18 @@
     </main>
 
     {{-- FOR MOBILE SCREEN  --}}
-  
+    <main class="relative block md:hidden lg:hidden bg-gray-100">
+        <!-- Section Title -->
+        <h1 class="text-center pt-12 px-4 font-extrabold text-3xl mb-8">
+            What our clients say
+        </h1>
 
- <main class="relative block md:hidden lg:hidden bg-gray-100">
-  <!-- Section Title -->
-  <h1 class="text-center pt-12 px-4 font-extrabold text-3xl mb-8">
-    What our clients say
-  </h1>
+        <!-- Scrollable Container -->
+        <div class="overflow-y-auto h-[500px] px-4 pb-0 my-24 relative space-y-6">
 
-  <!-- Scrollable Container -->
-  <div class="overflow-y-auto h-[500px] px-4 pb-0 my-24 relative space-y-6">
-
-    <!-- Card 1 -->
-    <div class="sticky top-0 z-[1] pointer-events-none">
-      <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
+            <!-- Card 1 -->
+            <div class="sticky top-0 z-[1] pointer-events-none">
+                <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -830,11 +817,11 @@
                         <div class="text-sm text-gray-500">Canada</div>
                     </div>
                 </div>
-    </div>
+            </div>
 
-    <!-- Card 2 -->
-    <div class="sticky top-0 z-[2] pointer-events-none">
-       <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
+            <!-- Card 2 -->
+            <div class="sticky top-0 z-[2] pointer-events-none">
+                <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -848,11 +835,11 @@
                         <div class="text-sm text-gray-500">Canada</div>
                     </div>
                 </div>
-    </div>
+            </div>
 
-    <!-- Card 3 -->
-    <div class="sticky top-0 z-[3] pointer-events-none">
-        <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
+            <!-- Card 3 -->
+            <div class="sticky top-0 z-[3] pointer-events-none">
+                <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -866,11 +853,11 @@
                         <div class="text-sm text-gray-500">Canada</div>
                     </div>
                 </div>
-    </div>
+            </div>
 
-    <!-- Card 4 -->
-    <div class=" sticky top-0 z-[4] pb-36 pointer-events-none" style="top: 0;">
-        <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6 ">
+            <!-- Card 4 -->
+            <div class=" sticky top-0 z-[4] pb-36 pointer-events-none" style="top: 0;">
+                <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6 ">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24 ">
                         <path
                             d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
@@ -884,13 +871,10 @@
                         <div class="text-sm text-gray-500">Canada</div>
                     </div>
                 </div>
-    </div>
+            </div>
 
-  </div>
-</main>
-
-
-
+        </div>
+    </main>
 
     <!-- Optional: Progress indicator -->
     <div class="bg-black py-16 px-4 sm:px-6 lg:px-8">
@@ -1014,9 +998,8 @@
         </section>
     </div>
 
-
     {{-- FROM button --}}
-    <div class="bg-black py-16 px-4 sm:px-6 ">
+    <div class="bg-black py-16 px-4 sm:px-4">
         <div class="max-w-9xl mx-auto">
             <!-- Section Title -->
             <h1 id="ourWorkTitle"
@@ -1209,9 +1192,7 @@
             </div>
         </div>
     </div>
-
-
-    <!-- Add this script at the end of your body -->
+<!-- Add this script at the end of your body -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Check if mobile device (768px is Tailwind's md breakpoint)
@@ -1292,95 +1273,6 @@
             });
         });
 
-
-
-        // rtfyhjnmk,l
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.querySelector('.testimonial-container');
-            const slides = document.querySelectorAll('.testimonial-slide');
-            let currentSlide = 0;
-            let isScrolling = false;
-            let startY = 0;
-            let isTouch = false;
-
-            // Scroll to specific slide
-            const goToSlide = (index) => {
-                if (isScrolling || index < 0 || index >= slides.length) return;
-
-                isScrolling = true;
-                currentSlide = index;
-
-                slides[index].scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-
-                setTimeout(() => {
-                    isScrolling = false;
-                }, 800);
-            };
-
-            // Touch events for swiping
-            container.addEventListener('touchstart', (e) => {
-                isTouch = true;
-                startY = e.touches[0].clientY;
-            }, {
-                passive: true
-            });
-
-            container.addEventListener('touchmove', (e) => {
-                if (!isTouch) return;
-                e.preventDefault();
-            }, {
-                passive: false
-            });
-
-            container.addEventListener('touchend', (e) => {
-                if (!isTouch) return;
-                isTouch = false;
-
-                const endY = e.changedTouches[0].clientY;
-                const diff = startY - endY;
-
-                if (diff > 50) { // Swipe up - next
-                    goToSlide(currentSlide + 1);
-                } else if (diff < -50) { // Swipe down - previous
-                    goToSlide(currentSlide - 1);
-                }
-            }, {
-                passive: true
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowDown') {
-                    goToSlide(currentSlide + 1);
-                    e.preventDefault();
-                } else if (e.key === 'ArrowUp') {
-                    goToSlide(currentSlide - 1);
-                    e.preventDefault();
-                }
-            });
-
-            // Track current slide on scroll
-            container.addEventListener('scroll', () => {
-                if (isScrolling) return;
-
-                const containerTop = container.scrollTop;
-                const containerHeight = container.clientHeight;
-
-                slides.forEach((slide, index) => {
-                    const slideTop = slide.offsetTop - container.offsetTop;
-                    const slideHeight = slide.offsetHeight;
-
-                    if (containerTop >= slideTop - (containerHeight / 3) &&
-                        containerTop < slideTop + slideHeight - (containerHeight / 3)) {
-                        currentSlide = index;
-                    }
-                });
-            });
-        });
 
 
         //   rtyunmrtvybunmk
