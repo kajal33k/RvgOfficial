@@ -52,8 +52,6 @@
             }
         }
     </style>
-
-
     <!-- Main Content -->
     <section class="relative text-center px-4 py-12 md:py-20 bg-[#fefefe]">
         <!-- Main Title -->
@@ -802,7 +800,7 @@
   </h1>
 
   <!-- Scrollable Container -->
-  <div class="overflow-y-auto h-[500px] px-4 pb-8 relative space-y-6">
+  <div class="overflow-y-auto h-[500px] px-4 pb-0 my-24 relative space-y-6">
 
     <!-- Card 1 -->
     <div class="sticky top-0 z-[1] pointer-events-none">
@@ -859,9 +857,9 @@
     </div>
 
     <!-- Card 4 -->
-    <div class="sticky top-0 z-[4] pointer-events-none">
-        <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
-                    <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+    <div class=" sticky top-0 z-[4] pb-36 pointer-events-none" style="top: 0;">
+        <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6 ">
+                    <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24 ">
                         <path
                             d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                     </svg>
