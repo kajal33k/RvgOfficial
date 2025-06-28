@@ -1,5 +1,5 @@
-<footer class="bg-white text-black py-10 px-6">
-    <div class="container mx-auto flex flex-col md:flex-row flex-wrap justify-between items-center md:items-start gap-10">
+<footer class="bg-white text-black py-10 px-0">
+    <div class="container mx-0 flex flex-col md:flex-row flex-wrap justify-between items-center md:items-start gap-10">
         <!-- Logo Section -->
         <div class="flex-shrink-0 mx-auto md:mx-0">
             <img src="{{ asset('asset/image/logo-w.png') }}" alt="Logo" class="h-24 w-auto md:h-32">

@@ -12,7 +12,7 @@
                     class="block w-[180px] md:w-[240px] lg:w-[280px] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black rounded-full">
                     <img src="{{ asset('asset/image/logo-w.png') }}"
                         alt="Lemon Tree Design Agency Logo"
-                        class="w-full h-28 transition-all duration-300 hover:opacity-90"
+                        class="w-full h-20 lg:w-full lg:h-24 transition-all duration-300 hover:opacity-90"
                         loading="lazy" decoding="async">
                 </a>
             </div>

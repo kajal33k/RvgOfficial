@@ -28,6 +28,15 @@
                 height: auto;
             }
         }
+
+        
+ 
+        .sticky-card {
+            position: sticky;
+            top: 100px;
+            /* Adjust where it sticks */
+        }
+ 
     </style>
     <!-- Main Content -->
     <section class="relative text-center px-4 py-12 md:py-20 bg-[#fefefe]">
@@ -792,7 +801,7 @@
     </main>
 
     {{-- FOR MOBILE SCREEN  --}}
-    <main class="relative block md:hidden lg:hidden bg-gray-100">
+    {{-- <main class="relative block md:hidden lg:hidden bg-gray-100">
         <!-- Section Title -->
         <h1 class="text-center pt-12 px-4 font-extrabold text-3xl mb-8">
             What our clients say
@@ -802,7 +811,7 @@
         <div class="overflow-y-auto h-[500px] px-4 pb-0 my-24 relative space-y-6">
 
             <!-- Card 1 -->
-            <div class="sticky top-0 z-[1] pointer-events-none">
+            <div class="slide sticky top-0 z-[1] pointer-events-none">
                 <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -820,7 +829,7 @@
             </div>
 
             <!-- Card 2 -->
-            <div class="sticky top-0 z-[2] pointer-events-none">
+            <div class="slide sticky top-0 z-[2] pointer-events-none">
                 <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -838,7 +847,7 @@
             </div>
 
             <!-- Card 3 -->
-            <div class="sticky top-0 z-[3] pointer-events-none">
+            <div class="slide sticky top-0 z-[3] pointer-events-none">
                 <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
                         <path
@@ -856,7 +865,7 @@
             </div>
 
             <!-- Card 4 -->
-            <div class=" sticky top-0 z-[4] pb-36 pointer-events-none" style="top: 0;">
+            <div class="slide sticky top-0 z-[4] pb-36 pointer-events-none" style="top: 0;">
                 <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6 ">
                     <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24 ">
                         <path
@@ -874,7 +883,87 @@
             </div>
 
         </div>
-    </main>
+    </main> --}}
+
+
+    <section class="max-w-3xl mx-auto px-4 py-4 my-2 space-y-4 block md:hidden lg:hidden mb-12">
+        <!-- Section Title -->
+        <h1 class="text-center pt-4 px-4 font-extrabold text-3xl mb-8">
+            What our clients say
+        </h1>
+
+        <!-- Card 1 -->
+        <div class="sticky-card bg-white  transition-all duration-300">
+            <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
+                <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <blockquote class="text-lg sm:text-xl font-medium leading-relaxed text-gray-700">
+                    "As our first experience with web development, branding, and UI/UX design, Lemontree made the
+                    process incredibly smooth..."
+                </blockquote>
+                <div>
+                    <div class="text-lg font-semibold text-gray-900">Shadi & Jad, Munchiz</div>
+                    <div class="text-sm text-gray-500">Canada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="sticky-card bg-white  transition-all duration-300">
+            <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
+                <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <blockquote class="text-lg sm:text-xl font-medium leading-relaxed text-gray-700">
+                    "As our first experience with web development, branding, and UI/UX design, Lemontree made the
+                    process incredibly smooth..."
+                </blockquote>
+                <div>
+                    <div class="text-lg font-semibold text-gray-900">Shadi & Jad, Munchiz</div>
+                    <div class="text-sm text-gray-500">Canada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="sticky-card bg-white  transition-all duration-300">
+            <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6">
+                <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <blockquote class="text-lg sm:text-xl font-medium leading-relaxed text-gray-700">
+                    "As our first experience with web development, branding, and UI/UX design, Lemontree made the
+                    process incredibly smooth..."
+                </blockquote>
+                <div>
+                    <div class="text-lg font-semibold text-gray-900">Shadi & Jad, Munchiz</div>
+                    <div class="text-sm text-gray-500">Canada</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="sticky-card bg-white  transition-all duration-300">
+            <div class="w-full max-w-5xl p-8 bg-white rounded-xl shadow-xl space-y-6 ">
+                <svg class="h-12 w-12 text-red-500" fill="currentColor" viewBox="0 0 24 24 ">
+                    <path
+                        d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <blockquote class="text-lg sm:text-xl font-medium leading-relaxed text-gray-700">
+                    "As our first experience with web development, branding, and UI/UX design, Lemontree made the
+                    process incredibly smooth..."
+                </blockquote>
+                <div>
+                    <div class="text-lg font-semibold text-gray-900">Shadi & Jad, Munchiz</div>
+                    <div class="text-sm text-gray-500">Canada</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Optional: Progress indicator -->
     <div class="bg-black py-16 px-4 sm:px-6 lg:px-8">
@@ -1192,7 +1281,7 @@
             </div>
         </div>
     </div>
-<!-- Add this script at the end of your body -->
+    <!-- Add this script at the end of your body -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Check if mobile device (768px is Tailwind's md breakpoint)
