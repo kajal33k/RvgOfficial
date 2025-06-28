@@ -886,7 +886,7 @@
     </main> --}}
 
 
-    <section class="max-w-3xl mx-auto px-4 py-4 my-2 space-y-4 block md:hidden lg:hidden mb-12">
+    <section class="max-w-auto mx-auto px-4 py-4 my-2 space-y-4 block md:hidden lg:hidden mb-12">
         <!-- Section Title -->
         <h1 class="text-center pt-4 px-4 font-extrabold text-3xl mb-8">
             What our clients say
@@ -1020,7 +1020,7 @@
     </div>
 
     {{-- FAQS --}}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12 lg:py-16 overflow-visible">
+    <div class="w-full lg:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12 lg:py-16 overflow-visible ">
         <!-- FAQ Section -->
         <section class="space-y-4 md:space-y-8 lg:space-y-10">
             <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-4 md:mb-8 lg:mb-10 text-start"
@@ -1088,11 +1088,11 @@
     </div>
 
     {{-- FROM button --}}
-    <div class="bg-black py-16 px-4 sm:px-4">
-        <div class="max-w-9xl mx-auto">
+    {{-- <div class="bg-black py-16 px-4 sm:px-4">
+        <div class="w-full lg:max-w-9xl mx-auto">
             <!-- Section Title -->
             <h1 id="ourWorkTitle"
-                class="text-center text-white font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-8 transition-all duration-700 ease-in-out"
+                class="text-center text-white font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-7xl xl:text-8xl mb-8 transition-all duration-700 ease-in-out"
                 data-aos="zoom-out-up">
                 Request a Quote
             </h1>
@@ -1280,7 +1280,78 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+
+    <div class="bg-black py-16 px-4 sm:px-4 overflow-x-hidden">
+    <div class="w-full max-w-screen-xl mx-auto">
+        <!-- Section Title -->
+        <h1 id="ourWorkTitle"
+            class="text-center text-white font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-7xl xl:text-8xl mb-8 transition-all duration-700 ease-in-out"
+            data-aos="zoom-out-up">
+            Request a Quote
+        </h1>
+
+        <!-- Content Container -->
+        <div class="mt-12 space-y-12">
+            <!-- CTA Button -->
+            <div class="text-center">
+                <button
+                    class="inline-flex items-center gap-2 rounded-lg border-2 border-red-500 bg-red-500 px-6 py-4 text-lg font-semibold text-white transition-all hover:bg-transparent hover:text-red-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                    Explore Web Services
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Divider -->
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-600"></div>
+                </div>
+                <div class="relative flex justify-center">
+                    <span class="bg-black px-4 text-lg font-medium text-gray-300">Or fill the form below</span>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <form class="space-y-6 px-1">
+                <!-- Name -->
+                <div>
+                    <input type="text" placeholder="Name" required
+                        class="w-full rounded-lg bg-gray-900 p-4 text-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <!-- Email -->
+                <div>
+                    <input type="email" placeholder="Email" required
+                        class="w-full rounded-lg bg-gray-900 p-4 text-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500">
+                </div>
+                <!-- Message -->
+                <div>
+                    <textarea placeholder="Briefly describe your project" rows="4" required
+                        class="w-full rounded-lg bg-gray-900 p-4 text-lg text-white placeholder-gray-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                </div>
+
+                <!-- Grid Sections -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Each column remains same as you provided... -->
+                    <!-- ... -->
+                </div>
+            </form>
+
+            <!-- Submit Button -->
+            <div class="mt-8 max-w-[400px] mx-auto">
+                <button type="submit"
+                    class="w-full items-center flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200">
+                    Request Quote
+                </button>
+            </div>
+        </div>
     </div>
+</div>
+
     <!-- Add this script at the end of your body -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1317,54 +1388,6 @@
 
         // fgvhjnktvbhnj tyguhj
 
-        AOS.init({
-            once: true,
-            duration: 1000
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const slides = document.querySelectorAll('.slide');
-            let currentSlide = 0;
-            let isScrolling = false;
-
-            const scrollToSlide = (index) => {
-                if (isScrolling || index === currentSlide) return;
-                isScrolling = true;
-
-                window.scrollTo({
-                    top: slides[index].offsetTop,
-                    behavior: 'smooth'
-                });
-
-                setTimeout(() => {
-                    isScrolling = false;
-                    currentSlide = index;
-                }, 1000);
-            };
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
-                    scrollToSlide(Math.min(currentSlide + 1, slides.length - 1));
-                } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
-                    scrollToSlide(Math.max(currentSlide - 1, 0));
-                }
-            });
-
-            window.addEventListener('scroll', () => {
-                if (isScrolling) return;
-                const scrollY = window.scrollY;
-                slides.forEach((slide, i) => {
-                    if (scrollY >= slide.offsetTop && scrollY < slide.offsetTop + slide
-                        .offsetHeight) {
-                        currentSlide = i;
-                    }
-                });
-            });
-        });
-
-
-
-        //   rtyunmrtvybunmk
 
         AOS.init({
             duration: 800,
